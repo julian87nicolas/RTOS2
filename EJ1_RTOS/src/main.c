@@ -41,6 +41,7 @@ static void vTarea1(void *pvParameters){
     vTaskDelayUntil(&xLastWakeTime, 1000 / portTICK_RATE_MS);
     printf("Fin Busy Waiting\r\n");
     xSemaphoreGive(sem);
+    vTaskDelay(1);
   }
 }
 
