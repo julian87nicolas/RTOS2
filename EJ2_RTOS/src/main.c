@@ -59,18 +59,18 @@ static void vTarea1(void *pvParameters){
   TickType_t xLastWakeTime;
   xLastWakeTime = xTaskGetTickCount();
   for(;;){
-    vTaskDelayUntil(pdMS_TO_TICKS(1500UL), &xLastWakeTime);
+    vTaskDelayUntil(pdMS_TO_TICKS(1500UL), xLastWakeTime);
     printf("Escribiendo en la cola...\r\n");
     xQueueSend(cola, &MSG, (portTickType) 1000 );
   }
 }
 
 static void vTarea2( void *pvParameters){
-  char *buff;
+  char buff[16];
   for(;;){
     if(xSemaphoreTake(sem, (portTickType) 1000) == pdTRUE){
       xQueueReceive(cola, (void*)buff, (portTickType) 1000 );
-      printf("Mensaje Leido:  " "%s" ", buff);
+      printf("Mensaje Leido: - %s - ", buff);
       Board_LED_Toggle(LED_3);
     }
   }
