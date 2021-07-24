@@ -48,6 +48,7 @@ static void vTarea2( void *pvParameters){
     xSemaphoreTake(sem, 10000 / portTICK_RATE_MS);
     Board_LED_Toggle(LED_BLUE);
     xSemaphoreGive(sem);
+    vTaskDelay(1);
   }
 }
 /*==================[external functions definition]==========================*/
@@ -57,8 +58,8 @@ int main(void)
 
   vSemaphoreCreateBinary(sem);
 
-	xTaskCreate(vTarea1, (const char *)"Tarea1", TAM_PILA, NULL, tskIDLE_PRIORITY+1, NULL );
-	xTaskCreate(vTarea2, (const char *)"Tarea2", TAM_PILA, NULL, tskIDLE_PRIORITY+2, NULL );
+	xTaskCreate(vTarea1, (const char *)"Tarea1", TAM_PILA, NULL, tskIDLE_PRIORITY+2, NULL );
+	xTaskCreate(vTarea2, (const char *)"Tarea2", TAM_PILA, NULL, tskIDLE_PRIORITY+1, NULL );
 
 	vTaskStartScheduler(); /* y por último se arranca el planificador . */
     //Nunca llegara a ese lazo  .... espero
