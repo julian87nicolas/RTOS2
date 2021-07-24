@@ -39,6 +39,7 @@ static void vTarea1(void *pvParameters){
     xSemaphoreTake(sem, 10000 / portTICK_RATE_MS);
     printf("\r\nBusy Waiting Tarea1.\r\n" );
     vTaskDelayUntil(&xLastWakeTime, 1000 / portTICK_RATE_MS);
+    printf("Fin Busy Waiting\r\n");
     xSemaphoreGive(sem);
   }
 }
@@ -47,6 +48,7 @@ static void vTarea2( void *pvParameters){
   for(;;){
     xSemaphoreTake(sem, 10000 / portTICK_RATE_MS);
     Board_LED_Toggle(LED_BLUE);
+    printf("Estado del LED azul: %d\r\n", Board_LED_Test(LED_BLUE));
     xSemaphoreGive(sem);
     vTaskDelay(1);
   }
