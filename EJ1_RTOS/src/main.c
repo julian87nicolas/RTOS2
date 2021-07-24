@@ -25,8 +25,6 @@
 /*==================[internal functions declaration]=========================*/
 
 /*==================[internal data definition]===============================*/
-const char *pcTextoTarea1 = "Tarea1 is running\r\n";
-const char *pcTextoTarea2 = "Tarea2 is running\r\n";
 
 xSemaphoreHandle sem;
 
@@ -58,10 +56,9 @@ int main(void)
 {
 
   vSemaphoreCreateBinary(sem);
-  xSemaphoreGive(sem);
 
-	xTaskCreate(vTarea1, (const char *)"Tarea1", TAM_PILA, (void*)pcTextoTarea1, tskIDLE_PRIORITY+2, NULL );
-	xTaskCreate(vTarea2, (const char *)"Tarea2", TAM_PILA, (void*)pcTextoTarea2, tskIDLE_PRIORITY+1, NULL );
+	xTaskCreate(vTarea1, (const char *)"Tarea1", TAM_PILA, NULL, tskIDLE_PRIORITY+1, NULL );
+	xTaskCreate(vTarea2, (const char *)"Tarea2", TAM_PILA, NULL, tskIDLE_PRIORITY+2, NULL );
 
 	vTaskStartScheduler(); /* y por último se arranca el planificador . */
     //Nunca llegara a ese lazo  .... espero
