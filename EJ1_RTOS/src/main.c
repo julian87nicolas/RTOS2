@@ -37,18 +37,20 @@ xSemaphoreHandle sem;
 static void vTarea1(void *pvParameters){
   TickType_t xLastWakeTime;
   xLastWakeTime = xTaskGetTickCount();
-
-  xSemaphoreTake(sem, 10000 / portTICK_RATE_MS);
-  printf("\r\nBusy Waiting Tarea1.\r\n" );
-  vTaskDelayUntil(&xLastWakeTime, 1000 / portTICK_RATE_MS);
-  xSemaphoreGive(sem);
-
+  for(;;){
+    xSemaphoreTake(sem, 10000 / portTICK_RATE_MS);
+    printf("\r\nBusy Waiting Tarea1.\r\n" );
+    vTaskDelayUntil(&xLastWakeTime, 1000 / portTICK_RATE_MS);
+    xSemaphoreGive(sem);
+  }
 }
 
 static void vTarea2( void *pvParameters){
-  xSemaphoreTake(sem, 10000 / portTICK_RATE_MS);
-  Board_LED_Toggle(LED_BLUE);
-  xSemaphoreGive(sem);
+  for(;;){
+    xSemaphoreTake(sem, 10000 / portTICK_RATE_MS);
+    Board_LED_Toggle(LED_BLUE);
+    xSemaphoreGive(sem);
+  }
 }
 /*==================[external functions definition]==========================*/
 
