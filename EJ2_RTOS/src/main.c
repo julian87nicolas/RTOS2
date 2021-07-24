@@ -12,13 +12,15 @@ y cambiar el estado del led Amarillo.
  *  */
  /*==================[inclusions]=============================================*/
 
-#include "chip.h"
-#include "board.h"
-#include "FreeRTOS.h"
-#include "task.h"
-#include "queue.h"
-#include "semphr.h"
-#include "supporting_functions.h"
+ #include "board.h"
+ #include "FreeRTOS.h"
+ #include "FreeRTOSConfig.h"
+ #include "task.h"
+ #include "semphr.h"
+ #include "queue.h"
+ #include "chip.h"
+ #include "string.h"
+ #include "stdlib.h"
 
 /*==================[macros and definitions]=================================*/
 
@@ -67,8 +69,8 @@ static void vTarea2( void *pvParameters){
   char *buff;
   for(;;){
     if(xSemaphoreTake(sem, (portTickType) 1000) == pdTRUE){
-      xQueueReceive(cola, buff, (portTickType) 1000 );
-      printf("Mensaje Leido: %s", buff);
+      xQueueReceive(cola, (void*)buff, (portTickType) 1000 );
+      printf("Mensaje Leido:  " "%s" ", buff);
       Board_LED_Toggle(LED_3);
     }
   }
