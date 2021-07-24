@@ -58,6 +58,7 @@ static void vTarea1(void *pvParameters){
   xLastWakeTime = xTaskGetTickCount();
   for(;;){
     vTaskDelayUntil(1500 / pdMS_TO_TICKS, &xLastWakeTime);
+    printf("Escribiendo en la cola...\r\n");
     xQueueSend(cola, MSG, (portTickType) 1000 );
   }
 }
