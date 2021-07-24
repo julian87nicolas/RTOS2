@@ -47,7 +47,7 @@ static void InitTimer(void)
 void RIT_IRQHandler( void ){
   BaseType_t xHigherPriorityTaskWoken = pdFALSE;
   xSemaphoreGiveFromISR(sem, &xHigherPriorityTaskWoken);
-
+  printf("Inicio INTERRUPCION\r\n");
   if(xHigherPriorityTaskWoken == pdTRUE){
     portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
   }
@@ -58,8 +58,9 @@ void RIT_IRQHandler( void ){
 static void vTarea1(void *pvParameters){
   TickType_t xLastWakeTime;
   xLastWakeTime = xTaskGetTickCount();
+  printf("Inicio TAREA1\r\n");
   for(;;){
-    vTaskDelayUntil(pdMS_TO_TICKS(1500UL), xLastWakeTime);
+    vTaskDelayUntil(pdMS_TO_TICKS(1500), xLastWakeTime);
     printf("Escribiendo en la cola...\r\n");
     xQueueSend(cola, &MSG, (portTickType) 1000 );
   }
@@ -67,6 +68,7 @@ static void vTarea1(void *pvParameters){
 
 static void vTarea2( void *pvParameters){
   char buff[16];
+  printf("Inicio TAREA2\r\n");
   for(;;){
     if(xSemaphoreTake(sem, (portTickType) 1000) == pdTRUE){
       xQueueReceive(cola, (void*)buff, (portTickType) 1000 );
