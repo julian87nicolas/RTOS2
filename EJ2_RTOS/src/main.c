@@ -51,6 +51,7 @@ void RIT_IRQHandler( void ){
   if(xHigherPriorityTaskWoken == pdTRUE){
     portYIELD_FROM_ISR( xHigherPriorityTaskWoken );
   }
+  printf("Fin INTERRUPCION\r\n");
   Chip_RIT_ClearInt(LPC_RITIMER); //Limpia el flag de interrupcion ¿?
 }
 /*----------------------------------TAREAS----------------------------------*/
@@ -61,7 +62,7 @@ static void vTarea1(void *pvParameters){
   printf("Inicio TAREA1\r\n");
   for(;;){
     xQueueSend(cola, &MSG, (portTickType) 1000 );
-    printf("\r\nEscribiendo en la cola...\r\n");
+    printf("Escribiendo en la cola...\r\n");
     vTaskDelayUntil(&xLastWakeTime, 1500 / portTICK_RATE_MS);
   }
 }
@@ -72,7 +73,7 @@ static void vTarea2( void *pvParameters){
   for(;;){
     if(xSemaphoreTake(sem, (portTickType) 1000) == pdTRUE){
       xQueueReceive(cola, (void*)buff, (portTickType) 1000 );
-      printf("Mensaje Leido: - %s - ", buff);
+      printf("Mensaje Leido: -< %s > - ", buff);
       Board_LED_Toggle(LED_1);
     }
   }
