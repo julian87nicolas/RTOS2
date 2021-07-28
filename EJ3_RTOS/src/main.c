@@ -27,10 +27,7 @@
 /*==================[macros and definitions]=================================*/
 
 #define TAM_PILA 150
-#define TAM_COLA 100
-#define TAM_MSG 16
-#define MSG "Mensaje Enviado"
-static xQueueHandle cola;
+
 SemaphoreHandle_t sem, semT;
 
 /*-------------------------------------------------------------------------*/
@@ -97,8 +94,7 @@ int main(void)
   NVIC_EnableIRQ(RITIMER_IRQn);
   NVIC_SetPriority(RITIMER_IRQn, (1<<__NVIC_PRIO_BITS) -1);
 
-  vTaskStartScheduler(); /* y por último se arranca el planificador . */
-    //Nunca llegara a ese lazo  .... espero
+  vTaskStartScheduler();
      for( ;; );
      return 0;
 }
