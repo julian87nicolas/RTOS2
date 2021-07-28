@@ -87,9 +87,9 @@ int main(void)
   sem = xSemaphoreCreateBinary();
   semT = xSemaphoreCreateBinary();
 
-	xTaskCreate(vTarea1, (const char *)"Tarea1", TAM_PILA, (const void *)"Tarea1", tskIDLE_PRIORITY+3, NULL );
+	xTaskCreate(vTarea1, (const char *)"Tarea1", TAM_PILA, (void *)"Tarea1", tskIDLE_PRIORITY+3, NULL );
 	xTaskCreate(vTarea2, (const char *)"Tarea2", TAM_PILA, NULL, tskIDLE_PRIORITY+2, NULL );
-  xTaskCreate(vTarea1, (const char *)"Tarea3", TAM_PILA, (const void *)"Tarea3", tskIDLE_PRIORITY+1, NULL );
+  xTaskCreate(vTarea1, (const char *)"Tarea3", TAM_PILA, (void *)"Tarea3", tskIDLE_PRIORITY+1, NULL );
 
   NVIC_EnableIRQ(RITIMER_IRQn);
   NVIC_SetPriority(RITIMER_IRQn, (1<<__NVIC_PRIO_BITS) -1);
