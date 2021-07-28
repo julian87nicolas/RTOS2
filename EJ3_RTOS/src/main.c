@@ -62,10 +62,10 @@ static void vTarea1(void *pvParameters){
   TickType_t xLastWakeTime;
   xLastWakeTime = xTaskGetTickCount();
   for(;;){
-    xSemaphoreTake(semT, 1000 / portTICK_RATE_MS);
+    //xSemaphoreTake(semT, 1000 / portTICK_RATE_MS);
     printf("Mensaje en puerto serie - %s -.\r\n", (void*)pvParameters);
     vTaskDelayUntil(&xLastWakeTime, 800 / portTICK_RATE_MS);
-    xSemaphoreGive(semT);
+    //xSemaphoreGive(semT);
   }
 }
 
