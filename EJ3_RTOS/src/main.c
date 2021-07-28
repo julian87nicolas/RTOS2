@@ -70,8 +70,7 @@ static void vTarea1(void *pvParameters){
 }
 
 static void vTarea2( void *pvParameters){
-  char buff[16];
-  printf("Inicio TAREA2\r\n");
+  TickType_t xLastWakeTime;
   xLastWakeTime = xTaskGetTickCount();
   for(;;){
     if(xSemaphoreTake(sem, (portTickType) 1000) == pdTRUE){
