@@ -58,9 +58,9 @@ static void vTarea2( void *pvParameters){
 void vApplicationIdleHook( void ){
   int i;
   if(a == b){
-    printf("\r\nABRAZO MORTAL!\r\n");
+    printf("ABRAZO MORTAL!\r\n\r\n");
     a = 1;
-    b =2;
+    b = 2;
   }
 }
 
