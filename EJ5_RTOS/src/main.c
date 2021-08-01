@@ -37,6 +37,7 @@ static void vTarea1(void *pvParameters){
     xSemaphoreTake(sema, 1000 / portTICK_RATE_MS);
     xSemaphoreTake(semb, 1000 / portTICK_RATE_MS);
     a = b;
+    vTaskDelay(1000 / portTICK_RATE_MS);
     printf("Dentro de la tarea1\r\n");
     xSemaphoreGive(semb);
     xSemaphoreGive(sema);
@@ -48,6 +49,7 @@ static void vTarea2( void *pvParameters){
     xSemaphoreTake(semb, 1000 / portTICK_RATE_MS);
     xSemaphoreTake(sema, 1000 / portTICK_RATE_MS);
     b = a;
+    vTaskDelay(1000 / portTICK_RATE_MS);
     printf("Dentro de la tarea2\r\n");
     xSemaphoreGive(sema);
     xSemaphoreGive(semb);
