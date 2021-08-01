@@ -60,7 +60,7 @@ int main(void)
 
   vSemaphoreCreateBinary(sema);
   vSemaphoreCreateBinary(semb);
-	xTaskCreate(vTarea1, (const char *)"Tarea1", TAM_PILA, NULL, tskIDLE_PRIORITY+2, NULL );
+	xTaskCreate(vTarea1, (const char *)"Tarea1", TAM_PILA, NULL, tskIDLE_PRIORITY+1 , NULL );
 	xTaskCreate(vTarea2, (const char *)"Tarea2", TAM_PILA, NULL, tskIDLE_PRIORITY+1, NULL );
 
 	vTaskStartScheduler(); /* y por último se arranca el planificador . */
