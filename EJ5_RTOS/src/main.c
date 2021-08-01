@@ -34,8 +34,6 @@ int a = 1, b = 2;
 /*==================[internal functions definition]==========================*/
 
 static void vTarea1(void *pvParameters){
-  TickType_t xLastWakeTime;
-  xLastWakeTime = xTaskGetTickCount();
   for(;;){
     xSemaphoreTake(sema, 1000 / portTICK_RATE_MS);
     xSemaphoreTake(semb, 1000 / portTICK_RATE_MS);
