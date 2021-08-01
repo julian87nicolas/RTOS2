@@ -53,6 +53,10 @@ static void vTarea2( void *pvParameters){
     xSemaphoreGive(semb);
   }
 }
+void vApplicationIdleHook( void ){
+  printf("\r\nABRAZO MORTAL!\r\n");
+}
+
 /*==================[external functions definition]==========================*/
 
 int main(void)
