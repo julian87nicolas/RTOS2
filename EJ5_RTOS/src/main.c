@@ -15,7 +15,7 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "semphr.h"
-#include "serie.h"
+#include "Serie.h"
 /*==================[macros and definitions]=================================*/
 
 #define TAM_PILA 150
