@@ -58,7 +58,7 @@ static void vTarea2( void *pvParameters){
 void vApplicationIdleHook( void ){
   int i;
   printf("\r\nABRAZO MORTAL!\r\n");
-  for(i=0; i<100000;i++);
+  for(i=0; i<100000000;i++);
 }
 
 /*==================[external functions definition]==========================*/
