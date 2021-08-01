@@ -15,7 +15,6 @@
 #include "FreeRTOS.h"
 #include "task.h"
 #include "semphr.h"
-#include "Serie.h"
 /*==================[macros and definitions]=================================*/
 
 #define TAM_PILA 150
@@ -38,7 +37,7 @@ static void vTarea1(void *pvParameters){
     xSemaphoreTake(sema, 1000 / portTICK_RATE_MS);
     xSemaphoreTake(semb, 1000 / portTICK_RATE_MS);
     a = b;
-    SeriePuts("Dentro de la tarea1");
+    printf("Dentro de la tarea1\r\n");
     xSemaphoreGive(semb);
     xSemaphoreGive(sema);
   }
@@ -49,7 +48,7 @@ static void vTarea2( void *pvParameters){
     xSemaphoreTake(semb, 1000 / portTICK_RATE_MS);
     xSemaphoreTake(sema, 1000 / portTICK_RATE_MS);
     b = a;
-    SeriePuts("Dentro de la tarea2");
+    printf("Dentro de la tarea2\r\n");
     xSemaphoreGive(sema);
     xSemaphoreGive(semb);
   }
